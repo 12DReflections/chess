@@ -9,6 +9,8 @@ class DragAndDrop : MonoBehaviour {
     private bool dragging = false;
     private float distance;
     private Piece this_piece;
+    private bool piece_held = false;
+
 
     [SerializeField]
     private Board board;
@@ -32,6 +34,8 @@ class DragAndDrop : MonoBehaviour {
                 board.hoverClosestSquare(closest_square);
             }
         }
+        Debug.Log("Dragging State: " + dragging + "123");
+        Debug.Log("Piece Held state: " + piece_held + "456");
     }
 
     void OnMouseDown() {
@@ -56,6 +60,11 @@ class DragAndDrop : MonoBehaviour {
 
             if (board.use_hover) board.resetHoveredSquares();
             dragging = false; // Stop dragging
+            if (piece_held == false) {
+                piece_held = true;
+            } else{
+                piece_held = false;
+            }
         }
     }
 }
